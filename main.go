@@ -184,12 +184,10 @@ screenshot-session name`,
 			},
 			Category:    "screenshot",
 			Description: "capture screenshot",
-			Usage:       "screenshot J2 AMM-12112 01",
+			Usage:       "screenshot",
 			UsageText: `
 screenshot
-screenshot J2 AMM-12112 01
-screenshot J2 AMM-12112 02
-screenshot J2 AMM-12112 "sample case"`,
+screenshot "sample name"`,
 			Action: actions.ScreenShot,
 		},
 		{
@@ -224,11 +222,11 @@ screenshot J2 AMM-12112 "sample case"`,
 			},
 			Category:    "nexus",
 			Description: "upload android or ios binaries to nexus",
-			Usage:       "upload-nexus qa-10-10-2010.apk",
+			Usage:       "upload-nexus app-10-10-2010.apk",
 			UsageText: `
-upload-nexus qa-10-10-2010.apk
-upload-nexus qa-10-10-2010.ipa
-upload-nexus qa-10-10-2010.zip`,
+upload-nexus app-10-10-2010.apk
+upload-nexus app-10-10-2010.ipa
+upload-nexus app-10-10-2010.zip`,
 			Action: actions.UploadNexus,
 		},
 	}
