@@ -1,0 +1,10 @@
+input/
+output/
+vendor/
+.idea/
+.vscode/
+screenshot_tools*
+.DS_Store
+*-packr.go
+packrd
+*.zip
