@@ -1,6 +1,7 @@
 input/
 output/
 vendor/
+dist/
 .idea/
 .vscode/
 screenshot_tools*
