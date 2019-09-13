@@ -5,7 +5,7 @@ Commands to take captures easily on android and ios and combine them with an eas
 
 # Download
 
-just download in  release section [https://github.com/jerson/screenshot_tools/releases](Release Section)
+just download in release section https://github.com/jerson/screenshot_tools/releases
 
 # Command line
 
