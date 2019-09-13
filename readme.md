@@ -3,6 +3,10 @@
 Commands to take captures easily on android and ios and combine them with an easy interface and with support for windows linux and macos
 
 
+# Download
+
+just download in  release section [https://github.com/jerson/screenshot_tools/releases](Release Section)
+
 # Command line
 
 ```bash
