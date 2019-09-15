@@ -1,6 +1,6 @@
-# ScreenShot Tools
+# Screenshot tools
 
-Commands to take captures easily on android and ios and combine them with an easy interface and with support for windows linux and macos
+Commands to take captures easily on android and ios and combine them with an easy interface and with support for Windows, Linux and macOS.
 
 # Requirements
 
@@ -28,7 +28,7 @@ make
 
 ```bash
 NAME:
-   ScreenShot Tools
+   Screenshot Tools
 
 USAGE:
    screenshot-tools [global options] command [command options] [arguments...]
@@ -57,7 +57,7 @@ GLOBAL OPTIONS:
 
 ```
 
-## ScreenShot session
+## Screenshot session
 
 ```bash
 NAME:
@@ -117,7 +117,7 @@ Output file: sample session.png
 
 ![Sample output](./docs/output_session.png)
 
-## ScreenShot
+## Screenshot
 
 ```bash
 NAME:
