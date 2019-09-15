@@ -7,7 +7,7 @@ import (
 	"log"
 	"math"
 	"os"
-	"screenshot_tools/modules/config"
+	"screenshot-tools/modules/config"
 
 	"github.com/disintegration/imaging"
 )

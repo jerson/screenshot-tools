@@ -9,10 +9,10 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"screenshot_tools/commands"
-	"screenshot_tools/modules/config"
-	"screenshot_tools/modules/prompt"
-	"screenshot_tools/modules/utils"
+	"screenshot-tools/commands"
+	"screenshot-tools/modules/config"
+	"screenshot-tools/modules/prompt"
+	"screenshot-tools/modules/utils"
 )
 
 // ScreenShot ...

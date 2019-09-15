@@ -9,7 +9,7 @@ import (
 
 	"gopkg.in/AlecAivazis/survey.v1"
 
-	"screenshot_tools/modules/utils"
+	"screenshot-tools/modules/utils"
 )
 
 // CompressOptions ...

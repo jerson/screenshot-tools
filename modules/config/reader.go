@@ -16,7 +16,7 @@ type Resize struct {
 
 // Dir ...
 type Dir struct {
-	Automator string `toml:"automator" default:".screenshot_tools"`
+	Automator string `toml:"automator" default:".screenshot-tools"`
 	Input     string `toml:"input" default:""`
 	Output    string `toml:"output" default:"./output"`
 }

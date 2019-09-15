@@ -11,9 +11,9 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 
-	"screenshot_tools/actions"
-	"screenshot_tools/modules/config"
-	"screenshot_tools/modules/osx"
+	"screenshot-tools/actions"
+	"screenshot-tools/modules/config"
+	"screenshot-tools/modules/osx"
 )
 
 func setup() {

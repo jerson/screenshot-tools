@@ -8,8 +8,8 @@ import (
 
 	"github.com/gobuffalo/packr/v2"
 
-	"screenshot_tools/modules/config"
-	"screenshot_tools/modules/utils"
+	"screenshot-tools/modules/config"
+	"screenshot-tools/modules/utils"
 )
 
 // OpenApp ...

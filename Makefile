@@ -1,7 +1,7 @@
 APP_VERSION?=latest
 PACKAGER?=packr2
 BUILD?=packr2 build -ldflags="-w -s"
-NAME?=screenshot_tools
+NAME?=screenshot-tools
 UPX?=upx
 
 default: build

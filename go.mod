@@ -1,4 +1,4 @@
-module screenshot_tools
+module screenshot-tools
 
 go 1.13
 
@@ -12,6 +12,7 @@ require (
 	github.com/huandu/xstrings v1.2.0 // indirect
 	github.com/jinzhu/configor v1.1.1
 	github.com/kbinani/screenshot v0.0.0-20190719135742-f06580e30cdc
+	github.com/lxn/win v0.0.0-20190910083938-ae3bd9765f46 // indirect
 	github.com/mattn/go-runewidth v0.0.4 // indirect
 	github.com/nsf/termbox-go v0.0.0-20190817171036-93860e161317 // indirect
 	github.com/pkg/errors v0.8.1

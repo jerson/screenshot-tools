@@ -15,7 +15,7 @@ import (
 	"github.com/kbinani/screenshot"
 	log "github.com/sirupsen/logrus"
 
-	"screenshot_tools/modules/osx"
+	"screenshot-tools/modules/osx"
 )
 
 // ScreenShotOptions ...

@@ -3,9 +3,9 @@ package actions
 import (
 	"github.com/urfave/cli"
 
-	"screenshot_tools/commands"
-	"screenshot_tools/modules/config"
-	"screenshot_tools/modules/prompt"
+	"screenshot-tools/commands"
+	"screenshot-tools/modules/config"
+	"screenshot-tools/modules/prompt"
 )
 
 // Compress ...

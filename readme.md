@@ -2,10 +2,9 @@
 
 Commands to take captures easily on android and ios and combine them with an easy interface and with support for windows linux and macos
 
-
 # Download
 
-just download in release section https://github.com/jerson/screenshot_tools/releases
+just download in release section https://github.com/jerson/screenshot-tools/releases
 
 # Command line
 
@@ -14,7 +13,7 @@ NAME:
    ScreenShot Tools
 
 USAGE:
-   screenshot_tools [global options] command [command options] [arguments...]
+   screenshot-tools [global options] command [command options] [arguments...]
 
 VERSION:
    0.1.0
@@ -44,12 +43,13 @@ GLOBAL OPTIONS:
 ```
 
 ## ScreenShot session
+
 ```bash
 NAME:
-   screenshot_tools screenshot-session - screenshot-session
+   screenshot-tools screenshot-session - screenshot-session
 
 USAGE:
-   
+
 screenshot-session
 screenshot-session name
 
@@ -65,6 +65,7 @@ OPTIONS:
    --platform value, -p value     Platform: ios,android,ios-simulator,desktop (default: "android")
 
 ```
+
 ```bash
 ? Name: sample session
 
@@ -83,31 +84,32 @@ OPTIONS:
 
 	Note: keys are case sensitive
 
-INFO[0008] new screenshot: sample session/sample session_01.png 
-INFO[0009] new screenshot: sample session/sample session_02.png 
+INFO[0008] new screenshot: sample session/sample session_01.png
+INFO[0009] new screenshot: sample session/sample session_02.png
 List:
 [
  "sample session/sample session_01.png",
  "sample session/sample session_02.png"
 ]
 Removed last: sample session/sample session_02.png
-INFO[0014] new screenshot: sample session/sample session_02.png 
+INFO[0014] new screenshot: sample session/sample session_02.png
 Merged images:
 Output file: sample session.png
 
 ```
 
 ### Output
+
 ![Sample output](./docs/output_session.png)
 
-## ScreenShot 
+## ScreenShot
 
 ```bash
 NAME:
-   screenshot_tools screenshot - screenshot
+   screenshot-tools screenshot - screenshot
 
 USAGE:
-   
+
 screenshot
 screenshot "sample name"
 

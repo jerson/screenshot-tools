@@ -9,7 +9,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"screenshot_tools/modules/utils"
+	"screenshot-tools/modules/utils"
 )
 
 // MergeImagesOptions ...
