@@ -31,7 +31,7 @@ clean:
 	rm -rf $(NAME)*
 
 generate:
-	go generate
+	$(PACKAGER)
 
 test:
 	go test ./...

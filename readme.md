@@ -2,9 +2,27 @@
 
 Commands to take captures easily on android and ios and combine them with an easy interface and with support for windows linux and macos
 
+# Requirements
+
+- For **Android** screenshots is required **adb**
+- For **iOS device** screenshots is required **Xcode** and **Automator**
+- For **iOS simulator** screenshots is required **Xcode** and **Automator**
+
 # Download
 
 just download in release section https://github.com/jerson/screenshot-tools/releases
+
+# Build
+
+requires golang to compile and **packr2**
+
+```bash
+git clone https://github.com/jerson/screenshot-tools.git
+cd screenshot-tools
+make
+
+./screenshot-tools
+```
 
 # Command line
 
@@ -28,9 +46,6 @@ COMMANDS:
    evidences:
      merge-images, m  merge-images
      compress, c      compress
-
-   nexus:
-     upload-nexus, un  upload-nexus app-10-10-2010.apk
 
    screenshot:
      screenshot-session, ss  screenshot-session
