@@ -1,7 +1,6 @@
 before:
   hooks:
-    - go generate
-    - packr2
+    - make generate
 builds:
   - env:
       - CGO_ENABLED=0
