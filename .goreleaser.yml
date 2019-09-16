@@ -1,7 +1,6 @@
 before:
   hooks:
-    - uname -a
-    - apt-get install zip -y
+    - apk add zip
     - go get -u github.com/gobuffalo/packr/v2/packr2
     - go generate
     - packr2
