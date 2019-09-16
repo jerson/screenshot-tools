@@ -1,19 +1,19 @@
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 name: GoReleaser
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
-    - name: Check out code
-      uses: actions/checkout@master
-    - name: goreleaser
-      uses: docker://goreleaser/goreleaser
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        args: release
-      if: success()
+      - name: Check out code
+        uses: actions/checkout@master
+      - name: releaser
+        uses: docker://goreleaser/goreleaser
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: release
+        if: success()
