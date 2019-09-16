@@ -1,6 +1,6 @@
 APP_VERSION?=latest
 PACKAGER?=packr2
-BUILD?=packr2 build -ldflags="-w -s"
+BUILD?=go build -ldflags="-w -s"
 NAME?=screenshot-tools
 UPX?=upx
 
