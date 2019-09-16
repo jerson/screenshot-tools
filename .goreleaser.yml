@@ -1,7 +1,5 @@
 before:
   hooks:
-    - apk add zip
-    - go get -u github.com/gobuffalo/packr/v2/packr2
     - go generate
     - packr2
 builds:
