@@ -1,6 +1,7 @@
 env:
   - GO111MODULE=on
   - GOPROXY=https://goproxy.io
+  - GITHUB_SECRET=${{ secrets.GLOBAL_GITHUB_SECRET }}
 before:
   hooks:
     - make generate
