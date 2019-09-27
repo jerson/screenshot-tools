@@ -44,7 +44,7 @@ func main() {
 
 	app := cli.NewApp()
 	app.Name = "ScreenShot Tools"
-	app.Version = "0.1.0"
+	app.Version = "0.1.6"
 	app.Usage = ""
 
 	app.Flags = []cli.Flag{}

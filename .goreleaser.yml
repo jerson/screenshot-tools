@@ -33,3 +33,37 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+brews:
+  - name: screenshot-tools
+    github:
+      owner: jerson
+      name: homebrew-tap
+    url_template: "https://github.com/jerson/screenshot-tools/archive/{{ .Tag }}.tar.gz"
+    commit_author:
+      name: Gerson Alexander Pardo Gamez
+      email: jeral17@gmail.com
+    folder: Formula
+    homepage: "https://github.com/jerson/screenshot-tools"
+    description: "Screenshot tools for take and merge."
+    skip_upload: true
+    custom_block: |
+      head "https://github.com/jerson/screenshot-tools.git"
+    dependencies:
+      - go => :build
+      #- upx
+      #- zip
+      #- make
+    test: |
+      system "#{bin}/screenshot-tools", "--version"
+    install: |
+      ENV["CGO_ENABLED"] = "1"
+      ENV["GO111MODULE"] = "off"
+      ENV["GOPATH"] =  ENV["GOPATH"] || "#{ENV["HOME"]}/go"
+      system "go", "get", "-u", "github.com/gobuffalo/packr/v2/packr2"
+      ENV["GO111MODULE"] = "on"
+      ENV["PATH"] = PATH.new( "#{ENV["GOPATH"]}/bin" , ENV["PATH"])
+      system "go generate"
+      system "packr2"
+      system "go", "build", "-o", "screenshot-tools"
+      #system "make", "build"
+      bin.install "screenshot-tools"
