@@ -13,7 +13,7 @@ jobs:
       - name: releaser
         uses: docker://jerson/goreleaser:0.118
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GLOBAL_GITHUB_SECRET }}
         with:
           args: release
         if: success()
