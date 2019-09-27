@@ -48,7 +48,7 @@ brews:
     folder: Formula
     homepage: "https://github.com/jerson/screenshot-tools"
     description: "Screenshot tools for take and merge."
-    skip_upload: true
+    skip_upload: false
     custom_block: |
       head "https://github.com/jerson/screenshot-tools.git"
     dependencies:
