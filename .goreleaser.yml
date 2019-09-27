@@ -1,3 +1,6 @@
+env:
+  - GO111MODULE=on
+  - GOPROXY=https://goproxy.io
 before:
   hooks:
     - make generate
@@ -50,9 +53,6 @@ brews:
       head "https://github.com/jerson/screenshot-tools.git"
     dependencies:
       - go => :build
-      #- upx
-      #- zip
-      #- make
     test: |
       system "#{bin}/screenshot-tools", "--version"
     install: |
@@ -65,5 +65,4 @@ brews:
       system "go generate"
       system "packr2"
       system "go", "build", "-o", "screenshot-tools"
-      #system "make", "build"
       bin.install "screenshot-tools"
