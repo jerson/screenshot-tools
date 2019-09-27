@@ -34,6 +34,9 @@ generate:
 	go generate
 	packr2
 
+packr2:
+	go get -u github.com/gobuffalo/packr/v2/packr2
+
 test:
 	go test ./...
 
