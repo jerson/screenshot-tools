@@ -8,6 +8,13 @@ Commands to take captures easily on android and ios and combine them with an eas
 - For **iOS device** screenshots is required **Xcode** and **Automator**
 - For **iOS simulator** screenshots is required **Xcode** and **Automator**
 
+# Install
+
+Install supports Linux and MacOS with **homebrew**
+```bash
+brew install jerson/tap/screenshot-tools
+```
+
 # Download
 
 just download in release section https://github.com/jerson/screenshot-tools/releases
