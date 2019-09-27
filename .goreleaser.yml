@@ -52,7 +52,7 @@ brews:
     custom_block: |
       head "https://github.com/jerson/screenshot-tools.git"
     dependencies:
-      - go => :build
+      - go
     test: |
       system "#{bin}/screenshot-tools", "--version"
     install: |
