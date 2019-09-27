@@ -48,20 +48,3 @@ brews:
     homepage: "https://github.com/jerson/screenshot-tools"
     description: "Screenshot tools for take and merge."
     skip_upload: true
-    custom_block: |
-      head "https://github.com/jerson/screenshot-tools.git"
-    dependencies:
-      - go
-    test: |
-      system "#{bin}/screenshot-tools", "--version"
-    install: |
-      ENV["CGO_ENABLED"] = "1"
-      ENV["GO111MODULE"] = "off"
-      ENV["GOPATH"] =  ENV["GOPATH"] || "#{ENV["HOME"]}/go"
-      system "go", "get", "-u", "github.com/gobuffalo/packr/v2/packr2"
-      ENV["GO111MODULE"] = "on"
-      ENV["PATH"] = PATH.new( "#{ENV["GOPATH"]}/bin" , ENV["PATH"])
-      system "go generate"
-      system "packr2"
-      system "go", "build", "-o", "screenshot-tools"
-      bin.install "screenshot-tools"
