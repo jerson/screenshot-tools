@@ -11,7 +11,7 @@ import (
 // Resize ...
 type Resize struct {
 	Height  int `toml:"height" default:"600"`
-	Columns int `toml:"columns" default:"2"`
+	Columns int `toml:"columns" default:"3"`
 }
 
 // Dir ...
