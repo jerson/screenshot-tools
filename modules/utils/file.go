@@ -1,6 +1,10 @@
 package utils
 
-import "os"
+import (
+	"fmt"
+	"os"
+	"os/user"
+)
 
 // ExistsFile ...
 func ExistsFile(file string) bool {
@@ -8,4 +12,14 @@ func ExistsFile(file string) bool {
 		return false
 	}
 	return true
+}
+
+// DesktopDir ...
+func DesktopDir() (string, error) {
+
+	usr, err := user.Current()
+	if err != nil {
+		return "", err
+	}
+	return fmt.Sprintf("%s/%s", usr.HomeDir, "Desktop"), nil
 }

@@ -8,9 +8,7 @@ require (
 	github.com/atotto/clipboard v0.1.2 // indirect
 	github.com/disintegration/imaging v1.6.1
 	github.com/gen2brain/shm v0.0.0-20180314170312-6c18ff7f8b90 // indirect
-	github.com/gobuffalo/envy v1.7.1 // indirect
-	github.com/gobuffalo/logger v1.0.1 // indirect
-	github.com/gobuffalo/packr/v2 v2.6.0
+	github.com/gobuffalo/packr/v2 v2.7.0
 	github.com/huandu/xstrings v1.2.0 // indirect
 	github.com/jinzhu/configor v1.1.1
 	github.com/kbinani/screenshot v0.0.0-20190719135742-f06580e30cdc
@@ -19,11 +17,11 @@ require (
 	github.com/nsf/termbox-go v0.0.0-20190817171036-93860e161317 // indirect
 	github.com/pkg/errors v0.8.1
 	github.com/sirupsen/logrus v1.4.2
+	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/urfave/cli v1.22.1
-	golang.org/x/crypto v0.0.0-20190911031432-227b76d455e7 // indirect
-	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e // indirect
-	golang.org/x/sys v0.0.0-20190913121621-c3b328c6e5a7 // indirect
+	golang.org/x/crypto v0.0.0-20191001170739-f9e2070545dc // indirect
+	golang.org/x/sys v0.0.0-20191002091554-b397fe3ad8ed // indirect
 	golang.org/x/text v0.3.2
-	golang.org/x/tools v0.0.0-20190915201606-1d8cfc4bd2ca // indirect
+	golang.org/x/tools v0.0.0-20191002161851-3769738f410b // indirect
 	gopkg.in/AlecAivazis/survey.v1 v1.8.7
 )

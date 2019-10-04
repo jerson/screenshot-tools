@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
-	"os/user"
 	"runtime"
 	"strings"
 	"time"
@@ -16,6 +15,7 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	"screenshot-tools/modules/osx"
+	"screenshot-tools/modules/utils"
 )
 
 // ScreenShotOptions ...
@@ -41,6 +41,16 @@ type ScreenShotIOSOptions struct {
 type ScreenShotDesktopOptions struct {
 	ScreenShotOptions
 }
+
+// ScreenShotMacOSOptions ...
+type ScreenShotMacOSOptions struct {
+	ScreenShotOptions
+	Automator string
+}
+
+const delayForScreenShot = 10
+const maxWaitForScreenShot = delayForScreenShot * 10 * 10
+const screenShotExtension = ".png"
 
 // GetNameByOptions ...
 func GetNameByOptions(options ScreenShotOptions) string {
@@ -165,15 +175,12 @@ func ScreenShotIOS(options ScreenShotIOSOptions) (string, error) {
 		return output, errors.New("only available on macOS devices")
 	}
 
-	usr, err := user.Current()
+	desktopDir, err := utils.DesktopDir()
 	if err != nil {
 		return output, err
 	}
-	desktopDir := fmt.Sprintf("%s/%s", usr.HomeDir, "Desktop")
-	screenShotExtension := ".png"
 
 	currentLastFile, _ := GetLastFileFrom(desktopDir, screenShotExtension)
-
 	var takeScreenShotScript string
 
 	if options.Simulator {
@@ -185,6 +192,7 @@ func ScreenShotIOS(options ScreenShotIOSOptions) (string, error) {
 	if err != nil {
 		return output, err
 	}
+
 	cmd := exec.Command(options.Automator, takeScreenShotScript)
 	err = cmd.Run()
 	if err != nil {
@@ -193,8 +201,6 @@ func ScreenShotIOS(options ScreenShotIOSOptions) (string, error) {
 	}
 	log.Debug("looking for screenshot...")
 	i := 0
-	step := 100
-	max := step * 10 * 10
 	currentScreenShot := ""
 	for {
 		lastFile, _ := GetLastFileFrom(desktopDir, screenShotExtension)
@@ -203,8 +209,8 @@ func ScreenShotIOS(options ScreenShotIOSOptions) (string, error) {
 			break
 		}
 		time.Sleep(time.Duration(i) * time.Millisecond)
-		i += step
-		if i > max {
+		i += delayForScreenShot
+		if i > maxWaitForScreenShot {
 			return output, errors.New("screenshot not found")
 		}
 	}
@@ -243,6 +249,57 @@ func ScreenShotDesktop(options ScreenShotDesktopOptions) (string, error) {
 
 	err = png.Encode(file, img)
 	if err != nil {
+		return output, err
+	}
+
+	log.Infof("new screenshot: %s", output)
+	return output, nil
+}
+
+// ScreenShotDesktopMacOS ...
+func ScreenShotDesktopMacOS(options ScreenShotMacOSOptions) (string, error) {
+
+	output := GetNameByOptions(options.ScreenShotOptions)
+	if runtime.GOOS != "darwin" {
+		return output, errors.New("only available on macOS devices")
+	}
+
+	desktopDir, err := utils.DesktopDir()
+	if err != nil {
+		return output, err
+	}
+
+	currentLastFile, _ := GetLastFileFrom(desktopDir, screenShotExtension)
+	takeScreenShotScript, err := osx.GetAutomatorFile("take-desktop-screenshot-region.workflow")
+	if err != nil {
+		return output, err
+	}
+
+	cmd := exec.Command(options.Automator, takeScreenShotScript)
+	err = cmd.Run()
+	if err != nil {
+		log.Error("Please connect your device")
+		return output, err
+	}
+	log.Debug("looking for screenshot...")
+	i := 0
+	currentScreenShot := ""
+	for {
+		lastFile, _ := GetLastFileFrom(desktopDir, screenShotExtension)
+		if lastFile != currentLastFile {
+			currentScreenShot = lastFile
+			break
+		}
+		time.Sleep(time.Duration(i) * time.Millisecond)
+		i += delayForScreenShot
+		if i > maxWaitForScreenShot {
+			return output, errors.New("screenshot not found")
+		}
+	}
+
+	err = os.Rename(currentScreenShot, output)
+	if err != nil {
+		defer os.Remove(currentScreenShot)
 		return output, err
 	}
 
