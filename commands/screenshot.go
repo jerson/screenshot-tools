@@ -256,8 +256,8 @@ func ScreenShotDesktop(options ScreenShotDesktopOptions) (string, error) {
 	return output, nil
 }
 
-// ScreenShotDesktopMacOS ...
-func ScreenShotDesktopMacOS(options ScreenShotMacOSOptions) (string, error) {
+// ScreenShotMacOS ...
+func ScreenShotMacOS(options ScreenShotMacOSOptions) (string, error) {
 
 	output := GetNameByOptions(options.ScreenShotOptions)
 	if runtime.GOOS != "darwin" {

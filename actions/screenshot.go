@@ -23,7 +23,8 @@ func ScreenShot(c *cli.Context) error {
 	automator := c.String("automator")
 	platform := c.String("platform")
 
-	if !(platform == "android" || platform == "ios" || platform == "ios-simulator" || platform == "desktop") {
+	platform = prompt.Field("Platform", platform, "android,ios,macos,desktop,ios-simulator", "android")
+	if !(platform == "android" || platform == "ios" || platform == "macos" || platform == "ios-simulator" || platform == "desktop") {
 		return fmt.Errorf("not implemented for: %s", platform)
 	}
 
@@ -67,6 +68,12 @@ func ScreenShot(c *cli.Context) error {
 			ScreenShotOptions: commonOptions,
 		}
 		_, err = commands.ScreenShotDesktop(options)
+	} else if platform == "macos" {
+		options := commands.ScreenShotMacOSOptions{
+			ScreenShotOptions: commonOptions,
+			Automator:         automator,
+		}
+		_, err = commands.ScreenShotMacOS(options)
 	}
 	return err
 

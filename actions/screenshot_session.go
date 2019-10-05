@@ -27,7 +27,8 @@ func ScreenShotSession(c *cli.Context) error {
 	platform := c.String("platform")
 	automator := c.String("automator")
 
-	if !(platform == "android" || platform == "ios" || platform == "ios-simulator" || platform == "desktop") {
+	platform = prompt.Field("Platform", platform, "android,ios,macos,desktop,ios-simulator", "android")
+	if !(platform == "android" || platform == "ios" || platform == "macos" || platform == "ios-simulator" || platform == "desktop") {
 		return fmt.Errorf("not implemented for: %s", platform)
 	}
 
@@ -183,6 +184,12 @@ func ScreenShotSession(c *cli.Context) error {
 					ScreenShotOptions: commonOptions,
 				}
 				name, err = commands.ScreenShotDesktop(options)
+			} else if platform == "macos" {
+				options := commands.ScreenShotMacOSOptions{
+					ScreenShotOptions: commonOptions,
+					Automator:         automator,
+				}
+				name, err = commands.ScreenShotMacOS(options)
 			}
 			if err != nil {
 				fmt.Println(err)
@@ -214,6 +221,30 @@ func ScreenShotSession(c *cli.Context) error {
 			steps = append(steps, name)
 			currentStep++
 			continue
+		case "O":
+
+			output := fmt.Sprintf("%s", name)
+			err = os.MkdirAll(output, 0777)
+			if err != nil {
+				log.Warn(err)
+			}
+
+			commonOptions.Name = fmt.Sprintf("%s_%02d", name, currentStep)
+			commonOptions.OutputDir = output
+
+			options := commands.ScreenShotMacOSOptions{
+				ScreenShotOptions: commonOptions,
+				Automator:         automator,
+			}
+			name, err := commands.ScreenShotMacOS(options)
+
+			if err != nil {
+				fmt.Println(err)
+				continue
+			}
+			steps = append(steps, name)
+			currentStep++
+			continue
 		case "\n":
 		case "\r":
 			continue
@@ -229,6 +260,7 @@ func printHelp() {
 	fmt.Println(" help:")
 	fmt.Println("\tC: capture screenshot")
 	fmt.Println("\tE: capture desktop screenshot")
+	fmt.Println("\tO: capture macOS screenshot")
 	fmt.Println("\tM: merge screenshots and close")
 	fmt.Println("\tD: delete last screenshot")
 	fmt.Println("\tL: list captured screenshots")
@@ -236,7 +268,5 @@ func printHelp() {
 	fmt.Println("\tA: add custom screenshot from filesystem (beta)")
 	fmt.Println("\tQ: quit")
 	fmt.Println("\tH: print help")
-	fmt.Println("")
-	fmt.Println("\tNote: keys are case sensitive")
 	fmt.Println("")
 }

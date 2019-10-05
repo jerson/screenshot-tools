@@ -44,7 +44,7 @@ func main() {
 
 	app := cli.NewApp()
 	app.Name = "ScreenShot Tools"
-	app.Version = "0.1.12"
+	app.Version = "0.2.0"
 	app.Usage = ""
 
 	app.Flags = []cli.Flag{}
@@ -146,12 +146,12 @@ report -i ./images`,
 				cli.StringFlag{
 					Name:  "automator, au",
 					Value: config.Vars.Binary.Automator,
-					Usage: "Automator used when platform=ios",
+					Usage: "Automator used when platform=ios,ios-simulator,macos",
 				},
 				cli.StringFlag{
 					Name:  "platform, p",
-					Value: "android",
-					Usage: "Platform: ios,android,ios-simulator,desktop",
+					Value: "",
+					Usage: "Platform: ios,android,ios-simulator,desktop,macos",
 				},
 			},
 			Category:    "screenshot",
@@ -174,12 +174,12 @@ screenshot-session name`,
 				cli.StringFlag{
 					Name:  "automator, au",
 					Value: config.Vars.Binary.Automator,
-					Usage: "Automator used when platform=ios",
+					Usage: "Automator used when platform=ios,ios-simulator,macos",
 				},
 				cli.StringFlag{
 					Name:  "platform, p",
-					Value: "android",
-					Usage: "Platform: ios,android,ios-simulator,desktop",
+					Value: "",
+					Usage: "Platform: ios,android,ios-simulator,desktop,macos",
 				},
 			},
 			Category:    "screenshot",
