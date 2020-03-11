@@ -1,12 +1,9 @@
-APP_VERSION?=latest
-PACKAGER?=packr2
-BUILD?=go build -ldflags="-w -s"
 NAME?=screenshot-tools
 
 default: generate format vet build
 
 build:
-	$(BUILD) -o $(NAME) main.go
+	go build -ldflags="-w -s" -o $(NAME) main.go
 
 build-all: clean generate build-linux build-osx build-windows
 
@@ -26,7 +23,7 @@ build-osx:
 	CMD="make build" ./cross_build.sh
 
 clean:
-	$(PACKAGER) clean
+	packr2 clean
 	rm -rf assets/*.zip
 	rm -rf $(NAME)
 	rm -rf $(NAME)*
