@@ -5,30 +5,25 @@ NAME?=screenshot-tools
 
 default: generate format vet build
 
-build: generate
+build:
 	$(BUILD) -o $(NAME) main.go
 
-build-in-docker:
-	apt update && apt install -y zip
-	make packr2
-	make build
-
-build-all: clean build-linux build-osx build-windows
+build-all: clean generate build-linux build-osx build-windows
 
 build-windows:
 	GOOS=windows GOARCH=amd64 TAG=main \
 	ARGS="-e NAME=screenshot-tools_win.exe" \
-	CMD="make build-in-docker" ./cross_build.sh
+	CMD="make build" ./cross_build.sh
 
 build-linux:
 	GOOS=linux GOARCH=amd64 TAG=main \
 	ARGS="-e NAME=screenshot-tools_linux" \
-	CMD="make build-in-docker" ./cross_build.sh
+	CMD="make build" ./cross_build.sh
 
 build-osx:
 	GOOS=darwin GOARCH=amd64 TAG=darwin \
 	ARGS="-e NAME=screenshot-tools_osx" \
-	CMD="make build-in-docker" ./cross_build.sh
+	CMD="make build" ./cross_build.sh
 
 clean:
 	$(PACKAGER) clean
