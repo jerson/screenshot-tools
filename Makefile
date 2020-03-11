@@ -2,27 +2,33 @@ APP_VERSION?=latest
 PACKAGER?=packr2
 BUILD?=go build -ldflags="-w -s"
 NAME?=screenshot-tools
-UPX?=upx
 
-default: build
+default: generate format vet build
 
-build: generate format vet
+build: generate
 	$(BUILD) -o $(NAME) main.go
-	$(UPX) $(NAME)
 
-build-all: clean build-linux build-windows build-osx
+build-in-docker:
+	apt update && apt install -y zip
+	make packr2
+	make build
 
-build-windows: generate format vet
-	GOOS=windows GOARCH=amd64 $(BUILD) -o $(NAME)_win.exe main.go
-	$(UPX) $(NAME)_win.exe
+build-all: clean build-linux build-osx build-windows
 
-build-linux: generate format vet
-	GOOS=linux GOARCH=amd64 $(BUILD) -o $(NAME)_linux main.go
-	$(UPX) $(NAME)_linux
+build-windows:
+	GOOS=windows GOARCH=amd64 TAG=main \
+	ARGS="-e NAME=screenshot-tools_win.exe" \
+	CMD="make build-in-docker" ./cross_build.sh
 
-build-osx: generate format vet
-	GOOS=darwin GOARCH=amd64 $(BUILD) -o $(NAME)_osx main.go
-	$(UPX) $(NAME)_osx
+build-linux:
+	GOOS=linux GOARCH=amd64 TAG=main \
+	ARGS="-e NAME=screenshot-tools_linux" \
+	CMD="make build-in-docker" ./cross_build.sh
+
+build-osx:
+	GOOS=darwin GOARCH=amd64 TAG=darwin \
+	ARGS="-e NAME=screenshot-tools_osx" \
+	CMD="make build-in-docker" ./cross_build.sh
 
 clean:
 	$(PACKAGER) clean
@@ -35,7 +41,7 @@ generate:
 	packr2
 
 packr2:
-	go get -u github.com/gobuffalo/packr/v2/packr2
+	GO111MODULE=off go get -u github.com/gobuffalo/packr/v2/packr2
 
 test:
 	go test ./...
