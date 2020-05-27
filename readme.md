@@ -2,24 +2,24 @@
 
 Commands to take captures easily on android and ios and combine them with an easy interface and with support for Windows, Linux and macOS.
 
-# Requirements
+## Requirements
 
 - For **Android** screenshots is required **adb**
 - For **iOS device** screenshots is required **Xcode** and **Automator**
 - For **iOS simulator** screenshots is required **Xcode** and **Automator**
 
-# Install
+## Install
 
 Install supports Linux and MacOS with **homebrew**
 ```bash
 brew install jerson/tap/screenshot-tools
 ```
 
-# Download
+## Download
 
 just download in release section https://github.com/jerson/screenshot-tools/releases
 
-# Build
+## Build
 
 requires golang to compile and **packr2**
 
@@ -31,7 +31,7 @@ make
 ./screenshot-tools
 ```
 
-# Command line
+## Command line
 
 ```bash
 NAME:
@@ -64,7 +64,7 @@ GLOBAL OPTIONS:
 
 ```
 
-## Screenshot session
+### Screenshot session
 
 ```bash
 NAME:
@@ -120,11 +120,11 @@ Output file: sample session.png
 
 ```
 
-### Output
+#### Output
 
 ![Sample output](./docs/output_session.png)
 
-## Screenshot
+### Screenshot
 
 ```bash
 NAME:

@@ -1,31 +1,30 @@
-APP_VERSION?=latest
-PACKAGER?=packr2
-BUILD?=go build -ldflags="-w -s"
 NAME?=screenshot-tools
-UPX?=upx
 
-default: build
+default: generate format vet build
 
-build: generate format vet
-	$(BUILD) -o $(NAME) main.go main-packr.go
-	$(UPX) $(NAME)
+.PHONY: build
+build:
+	go build -ldflags="-w -s" -o $(NAME) main.go main-packr.go
 
-build-all: clean build-linux build-windows build-osx
+build-all: clean generate build-linux build-osx build-windows
 
-build-windows: generate format vet
-	GOOS=windows GOARCH=amd64 $(BUILD) -o $(NAME)_win.exe main.go main-packr.go
-	$(UPX) $(NAME)_win.exe
+build-windows:
+	GOOS=windows GOARCH=amd64 TAG=main \
+	ARGS="-e NAME=screenshot-tools_win.exe" \
+	CMD="make build" ./cross_build.sh
 
-build-linux: generate format vet
-	GOOS=linux GOARCH=amd64 $(BUILD) -o $(NAME)_linux main.go main-packr.go
-	$(UPX) $(NAME)_linux
+build-linux:
+	GOOS=linux GOARCH=amd64 TAG=main \
+	ARGS="-e NAME=screenshot-tools_linux" \
+	CMD="make build" ./cross_build.sh
 
-build-osx: generate format vet
-	GOOS=darwin GOARCH=amd64 $(BUILD) -o $(NAME)_osx main.go main-packr.go
-	$(UPX) $(NAME)_osx
+build-osx:
+	GOOS=darwin GOARCH=amd64 TAG=darwin \
+	ARGS="-e NAME=screenshot-tools_osx" \
+	CMD="make build" ./cross_build.sh
 
 clean:
-	$(PACKAGER) clean
+	packr2 clean
 	rm -rf assets/*.zip
 	rm -rf $(NAME)
 	rm -rf $(NAME)*
@@ -35,7 +34,7 @@ generate:
 	packr2
 
 deps:
-	go get -u github.com/gobuffalo/packr/v2/packr2
+	GO111MODULE=off go get -u github.com/gobuffalo/packr/v2/packr2
 	go mod download
 
 test:
