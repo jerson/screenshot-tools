@@ -1,10 +1,11 @@
 NAME?=screenshot-tools
+BUILD?=go build -ldflags="-w -s"
 
 default: generate format vet build
 
 .PHONY: build
 build:
-	go build -ldflags="-w -s" -o $(NAME) main.go main-packr.go
+	$(BUILD) -o $(NAME) main.go main-packr.go
 
 build-all: clean generate build-linux build-osx build-windows
 
