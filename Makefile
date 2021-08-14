@@ -1,5 +1,13 @@
 NAME?=screenshot-tools
 BUILD?=go build -ldflags="-w -s"
+PKGER_BIN?=$(shell which packr2)
+
+ifeq ($(PREFIX),)
+    PREFIX := /usr/local
+endif
+ifeq ($(PKGER_BIN),)
+    PKGER_BIN := $(shell go env GOPATH)/bin/packr2
+endif
 
 default: generate format vet build
 
@@ -24,15 +32,18 @@ build-osx:
 	ARGS="-e NAME=screenshot-tools_osx" \
 	CMD="make build" ./cross_build.sh
 
+install: deps generate build
+	sudo mv screenshot-tools $(PREFIX)/bin/screenshot-tools
+
 clean:
-	packr2 clean
+	$(PKGER_BIN) clean
 	rm -rf assets/*.zip
 	rm -rf $(NAME)
 	rm -rf $(NAME)*
 
 generate:
 	go generate
-	packr2
+	$(PKGER_BIN)
 
 deps:
 	GO111MODULE=off go get -u github.com/gobuffalo/packr/v2/packr2
