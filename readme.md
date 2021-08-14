@@ -21,14 +21,14 @@ just download in release section https://github.com/jerson/screenshot-tools/rele
 
 ## Build
 
-requires golang to compile and **packr2**
+requires Go to compile
 
 ```bash
 git clone https://github.com/jerson/screenshot-tools.git
 cd screenshot-tools
-make
+make install
 
-./screenshot-tools
+screenshot-tools
 ```
 
 ## Command line
